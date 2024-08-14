@@ -12,6 +12,7 @@ import numpy as np
 import torch
 from PIL import Image
 from tqdm import tqdm
+import supervision as sv
 
 
 def get_sdpa_settings():
@@ -199,7 +200,7 @@ def load_video_frames(
             "ffmpeg to start the JPEG file from 00000.jpg."
         )
 
-    img_paths = sv.list_files_with_extensions(directory=jpg_folder)
+    img_paths = sorted(sv.list_files_with_extensions(directory=jpg_folder))
     num_frames = len(img_paths)
     if num_frames == 0:
         raise RuntimeError(f"no images found in {jpg_folder}")
